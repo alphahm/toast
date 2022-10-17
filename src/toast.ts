@@ -19,7 +19,7 @@ class Toast {
     private constructor() {
         // this is necessary for when the class is called in a context where
         // a private constructor is not enforced
-        if(Toast.#instance) {
+        if (Toast.#instance) {
             throw new Error("Error: Instantiation failed: Use Toast.Instance.");
         }
         Toast.#instance = this;
@@ -28,7 +28,7 @@ class Toast {
         this.#intervalId = 0;
         this.#body = document.querySelector("body")!;
     }
-   
+
     public static get Instance(): Toast {
         return Toast.#instance ?? (Toast.#instance = new Toast());
     }
@@ -56,7 +56,7 @@ class Toast {
                 if (this.#alerts.length > 0 && !this.#isBusy) {
                     this.#createAlertDiv();
                 }
-                
+
                 // no more alerts in the queue, can clear the interval
                 if (this.#alerts.length === 0 && !this.#isBusy) {
                     clearInterval(this.#intervalId);
@@ -88,7 +88,7 @@ class Toast {
         toastContentMsg.classList.add("toast-content-msg");
         toastContentMsg.textContent = notification_obj.message
 
-        switch(notification_obj?.alertType) {
+        switch (notification_obj?.alertType) {
             case NotificationType.INFO:
                 toastDiv.classList.add("toast-info")
                 break;
@@ -103,7 +103,7 @@ class Toast {
         this.#body.appendChild(toastDiv);
         this.#destroy(toastDiv);
     }
-    
+
     #destroy(div: HTMLDivElement): void {
         div.classList.remove("show-toast");
         div.classList.add("hide-toast");
