@@ -9,10 +9,10 @@ enum NotificationType {
 }
 
 class Toast {
-    alerts: Array<INotification>;
-    isBusy: boolean;
-    intervalId: number;
-    body: HTMLBodyElement
+    private alerts: Array<INotification>;
+    private isBusy: boolean;
+    private intervalId: number;
+    private body: HTMLBodyElement
 
     private static _instance: Toast;
 
