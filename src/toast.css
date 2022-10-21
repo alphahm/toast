@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+
 .toaster {
     box-sizing: border-box;
     position: fixed;
