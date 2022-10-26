@@ -12,7 +12,7 @@ class Toast {
     #alerts: Array<INotification>;
     #isBusy: boolean;
     #intervalId: number;
-    #body: HTMLBodyElement
+    #body: HTMLBodyElement;
 
     static #instance: Toast;
 
