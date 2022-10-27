@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../dist/toast.css" rel="stylesheet">
     <title>Toast Example</title>
 </head>
 <body>
@@ -12,7 +11,9 @@
     
     <button id="btnNotify">Notify me!</button>
 
-    <script>
+    <script type="module">
+        import Toast from "../dist/toast.js"
+
         const createAlert = document.querySelector("#btnNotify");
     
         createAlert.addEventListener("click", () => {
@@ -24,7 +25,5 @@
             toast.notify(1, "This is the fifth hardcoded info message!");
         });
     </script>
-
-    <script src="../dist/toast.js" ></script>
 </body>
 </html>

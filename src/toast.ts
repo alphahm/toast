@@ -1,3 +1,5 @@
+import ToastMessage from "./ToastMessage.js";
+
 interface INotification {
     alertType: NotificationType,
     message: string
@@ -8,7 +10,7 @@ enum NotificationType {
     WARNING
 }
 
-class Toast {
+export default class Toast {
     #alerts: Array<INotification>;
     #isBusy: boolean;
     #intervalId: number;
@@ -78,38 +80,29 @@ class Toast {
             return;
         }
 
-        const toastDiv = document.createElement("div");
-        toastDiv.classList.add("toaster", "show-toast");
-
-        const toastContent = document.createElement("div");
-        toastContent.classList.add("toast-content");
-
-        const toastContentMsg = document.createElement("div");
-        toastContentMsg.classList.add("toast-content-msg");
-        toastContentMsg.textContent = notification_obj.message
+        const toastMessage = document.createElement("toast-message");
+        toastMessage.textContent = notification_obj.message
 
         switch (notification_obj?.alertType) {
             case NotificationType.INFO:
-                toastDiv.classList.add("toast-info")
+                toastMessage.setAttribute("level", "info")
                 break;
             case NotificationType.WARNING:
-                toastDiv.classList.add("toast-warning")
+                toastMessage.setAttribute("level", "warning")
                 break;
         }
 
-        toastContent.appendChild(toastContentMsg);
-        toastDiv.appendChild(toastContent);
+        toastMessage.setAttribute("show", "yes")
 
-        this.#body.appendChild(toastDiv);
-        this.#destroy(toastDiv);
+        this.#body.appendChild(toastMessage);
+        this.#destroy(toastMessage);
     }
 
-    #destroy(div: HTMLDivElement): void {
-        div.classList.remove("show-toast");
-        div.classList.add("hide-toast");
+    #destroy(toastMessage: HTMLElement): void {
+        toastMessage.setAttribute("show", "no")
 
         setTimeout(() => {
-            this.#body.removeChild(div);
+            this.#body.removeChild(toastMessage);
         }, 1500);
 
         // wait a bit to avoid rapid firing of notifications
@@ -118,3 +111,5 @@ class Toast {
         }, 2000);
     }
 }
+
+customElements.define("toast-message", ToastMessage);

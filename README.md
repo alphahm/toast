@@ -17,6 +17,16 @@ For now, there are just two types of notification, 0 for info and 1 for warning.
 
 Long messages will be cropped.
 
+## Example
+
+`toast.js` is added to html using type `module` therefore the example needs to be run in a server to avoid CORS error.
+
+Example:
+
+```
+python3 -m http.server
+```
+
 ## Development/Improve it
 
 Typescript script as well as the companion css are in the `src` folder.
